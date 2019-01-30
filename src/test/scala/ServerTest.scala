@@ -16,7 +16,7 @@ class ServerTest extends FunSuite with Matchers with ScalatestRouteTest with Bef
       }
   }
 
-  test("should register player") {
+  test("should register user") {
     assertWebsocket("John"){ wsClient =>
       wsClient.expectMessage("[{\"name\":\"John\"}]")
     }
@@ -36,9 +36,9 @@ class ServerTest extends FunSuite with Matchers with ScalatestRouteTest with Bef
   }
 
 
-  def assertWebsocket(playerName: String)(assertions:(WSProbe) => Unit) : Unit = {
+  def assertWebsocket(name: String)(assertions:(WSProbe) => Unit) : Unit = {
     val userService = new UserService()
     val wsClient = WSProbe()
-    WS(s"/?name=$playerName", wsClient.flow) ~> userService.websocketRoute ~> check(assertions(wsClient))
+    WS(s"/?name=$name", wsClient.flow) ~> userService.websocketRoute ~> check(assertions(wsClient))
   }
 }
