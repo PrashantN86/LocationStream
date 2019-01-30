@@ -1,10 +1,7 @@
 package com.stream.Actor
 
-import akka.actor.{Actor, ActorRef}
+import akka.actor.Actor
 import com.stream.domain._
-
-
-
 
 class UserManager extends Actor {
 

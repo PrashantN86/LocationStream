@@ -22,7 +22,7 @@ object UserServer {
     implicit val executionContext = system.dispatcher
 
     val userService = new UserService()
-    val bindingFuture = Http().bindAndHandle(userService.websocketRoute, Config.host,Config.port)
+    val bindingFuture = Http().bindAndHandle(userService.webSocketRoute, Config.host,Config.port)
     println(s"Server online at ${Config.host}:${Config.port}")
     StdIn.readLine()
     bindingFuture

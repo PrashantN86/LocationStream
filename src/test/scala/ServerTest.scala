@@ -27,10 +27,10 @@ class ServerTest extends FunSuite with Matchers with ScalatestRouteTest with Bef
     val client1 = WSProbe()
     val client2 = WSProbe()
 
-    WS(s"/?name=user1", client1.flow) ~> userService.websocketRoute ~> check {
+    WS(s"/?name=user1", client1.flow) ~> userService.webSocketRoute ~> check {
       client1.expectMessage("[{\"name\":\"user1\"}]")
     }
-    WS(s"/?name=user2", client2.flow) ~> userService.websocketRoute ~> check {
+    WS(s"/?name=user2", client2.flow) ~> userService.webSocketRoute ~> check {
       client2.expectMessage("[{\"name\":\"user1\"},{\"name\":\"user2\"}]")
     }
   }
@@ -46,6 +46,6 @@ class ServerTest extends FunSuite with Matchers with ScalatestRouteTest with Bef
   def assertWebsocket(name: String)(assertions:(WSProbe) => Unit) : Unit = {
     val userService = new UserService()
     val wsClient = WSProbe()
-    WS(s"/?name=$name", wsClient.flow) ~> userService.websocketRoute ~> check(assertions(wsClient))
+    WS(s"/?name=$name", wsClient.flow) ~> userService.webSocketRoute ~> check(assertions(wsClient))
   }
 }
