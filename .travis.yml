@@ -4,5 +4,12 @@ scala:
 
 jdk:
   - oraclejdk8
+  
+env:
+  - CODECOV_TOKEN="be7d7970-4b1a-48de-b68c-5b4af873ac2a"  
 
-script: sbt test
+script:
+  - sbt clean coverage test coverageReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
