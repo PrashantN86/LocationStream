@@ -6,7 +6,7 @@ import akka.http.scaladsl.server.Directives
 import akka.stream.scaladsl.{Flow, GraphDSL, Merge, Sink, Source}
 import akka.stream.{ActorMaterializer, FlowShape, OverflowStrategy}
 import com.stream.Actor.{UserManager, _}
-import com.stream.domain.Location
+import com.stream.domain._
 
 class UserService(implicit val actorSystem : ActorSystem, implicit  val actorMaterializer: ActorMaterializer) extends Directives {
 
